@@ -1,0 +1,21 @@
+%h1 Open Source Contributions
+
+%ol
+  - @contributions.each do |contribution|
+    - next if contribution['repository_url'].match(/randallreedjr/)
+    - next if contribution['repository_url'].match(/learn\-co/)
+    - next if contribution['repository_url'].match(/nyc\-tech\-conferences/)
+    - next if contribution['repository_url'].match(/ablwr/)
+    - next if contribution['repository_url'].match(/patchwork/)
+    %li
+      = link_to("#{contribution['repository_url'].gsub('https://api.github.com/repos/','')}, ##{contribution['number']}", contribution['url'].gsub('api','www').gsub('repos/',''))
+      -# = contribution.except("user","pull_request","body")
+      -# = link_to("#{contribution["repository_url"].delete('https://api.github.com/repos/')}, ##{contribution["number"]}", contribution["url"])
+      %p
+        ="Title: #{contribution['title']}"
+      %p
+        ="Opened: #{contribution['created_at']}"
+      %p
+        ="Merged/Closed: #{contribution['closed_at']}"
+    %hr
+
